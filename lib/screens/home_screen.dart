@@ -31,7 +31,71 @@ class _MyHomePageState extends State<MyHomePage> {
     int menuButtonAlpha = 255;
     int titleTextAlpha = 255;
 
-    BorderRadiusGeometry slidingUpPanelRadius = BorderRadius.circular(25);
+    BorderRadius slidingUpPanelRadius = BorderRadius.circular(25);
+
+    List<Widget> taskContainers = [
+      Container(
+        margin: EdgeInsets.fromLTRB(
+            screenWidth * 0.05, screenWidth * 0.05, screenWidth * 0.05, 0),
+        width: screenWidth * 0.9,
+        height: screenHeight * 0.15,
+        decoration: BoxDecoration(
+            color: const Color(0xffF6F6FF),
+            borderRadius: slidingUpPanelRadius,
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.grey, offset: Offset(2, 2), blurRadius: 2),
+            ]),
+        child: Material(
+          borderRadius: slidingUpPanelRadius,
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: slidingUpPanelRadius,
+            onTap: () {},
+            child: const Center(
+              child: Stack(
+                alignment: AlignmentGeometry.xy(0, 0),
+                children: [
+                  Icon(
+                    Icons.add,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
+                  Icon(
+                    Icons.circle_outlined,
+                    color: Colors.grey,
+                    size: 35,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ];
+
+    void addTask () {
+      setState(() {
+        taskContainers.add(
+          Container(
+            margin: EdgeInsets.fromLTRB(
+                screenWidth * 0.05, screenWidth * 0.05, screenWidth * 0.05, 0),
+            width: screenWidth * 0.9,
+            height: screenHeight * 0.15,
+            decoration: BoxDecoration(
+                color: const Color(0xffF6F6FF),
+                borderRadius: slidingUpPanelRadius,
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.grey, offset: Offset(2, 2), blurRadius: 2),
+                ]),
+            child: const Center(
+                child: Row()
+            ),
+          ),
+        );
+      });
+    }
 
     return Scaffold(
       body: SlidingUpPanel(
@@ -89,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: const Color(0xff9DB9EE)
                                       .withAlpha(menuButtonAlpha)),
                               margin:
-                              EdgeInsets.only(bottom: screenWidth * 0.012),
+                                  EdgeInsets.only(bottom: screenWidth * 0.012),
                             ),
                             Container(
                               width: screenWidth * 0.09,
@@ -99,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: const Color(0xff9DB9EE)
                                       .withAlpha(menuButtonAlpha)),
                               margin:
-                              EdgeInsets.only(bottom: screenWidth * 0.012),
+                                  EdgeInsets.only(bottom: screenWidth * 0.012),
                             ),
                             Container(
                               width: screenWidth * 0.09,
@@ -266,7 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: screenWidth * 0.9,
                       height: screenHeight * 0.05,
                       padding:
-                      EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+                          EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
                       decoration: BoxDecoration(
                           color: const Color(0xffF1F6FF),
                           borderRadius: BorderRadius.circular(30),
@@ -399,56 +463,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(screenWidth * 0.05,
-                                screenWidth * 0.05, screenWidth * 0.05, 0),
-                            width: screenWidth * 0.9,
-                            height: screenHeight * 0.15,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffF6F6FF),
-                                borderRadius: slidingUpPanelRadius,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(2, 2),
-                                      blurRadius: 2),
-                                ]),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(screenWidth * 0.05,
-                                screenWidth * 0.03, screenWidth * 0.05, 0),
-                            width: screenWidth * 0.9,
-                            height: screenHeight * 0.15,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffF6F6FF),
-                                borderRadius: slidingUpPanelRadius,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(2, 2),
-                                      blurRadius: 2),
-                                ]),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(
-                                screenWidth * 0.05,
-                                screenWidth * 0.03,
-                                screenWidth * 0.05,
-                                screenWidth * 0.03),
-                            width: screenWidth * 0.9,
-                            height: screenHeight * 0.15,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffF6F6FF),
-                                borderRadius: slidingUpPanelRadius,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(2, 2),
-                                      blurRadius: 2),
-                                ]),
-                          ),
-                        ]),
+                        children: taskContainers),
                     Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
